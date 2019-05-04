@@ -1,8 +1,0 @@
-/opt/master/sonder/build/CMakeFiles/rebuild_cache.dir
-/opt/master/sonder/build/CMakeFiles/edit_cache.dir
-/opt/master/sonder/build/common/CMakeFiles/rebuild_cache.dir
-/opt/master/sonder/build/common/CMakeFiles/edit_cache.dir
-/opt/master/sonder/build/messages/CMakeFiles/rebuild_cache.dir
-/opt/master/sonder/build/messages/CMakeFiles/edit_cache.dir
-/opt/master/sonder/build/options/CMakeFiles/rebuild_cache.dir
-/opt/master/sonder/build/options/CMakeFiles/edit_cache.dir
