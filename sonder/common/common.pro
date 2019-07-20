@@ -10,5 +10,3 @@ SUBDIRS +=  sc_file \
     sc_options \
     sc_log \
     sc_test
-
-sc_file.
