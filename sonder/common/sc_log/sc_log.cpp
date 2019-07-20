@@ -115,6 +115,12 @@ struct SLogInfo{
         _fileName = new char[logFile.length()+1]();
         strcpy(_fileName, logFile.c_str());
     }
+    void setLogFileName(const char* logfile)
+    {
+        delete [] _fileName;
+        _fileName = new char[strlen(logfile)+1]();
+        strcpy(_fileName, logfile);
+    }
     void setConsoleShow(bool bShow)
     {
         bShow ? _bDispConsole = 1: _bDispConsole = 0;
@@ -166,7 +172,8 @@ public:
 	typedef std::list<SLogContent*>			LogContentList;
     SCLogDataImp();
     ~SCLogDataImp();
-    int createlog(std::string& logfile);
+    unsigned createlog(std::string& logfile);
+    unsigned createlog(const char* logfile);
 	void message(const unsigned& logid, const unsigned& loglevel, const char* content);
 	void release(SLogContent* &pContent);
 	bool getcontent(SLogContent* &pContent);
@@ -208,24 +215,43 @@ SCLogDataImp::~SCLogDataImp()
         delete (_id2LogInfo[index]);
     _id2LogInfo.clear();
 }
-int SCLogDataImp::createlog(std::string &logfile)
+unsigned SCLogDataImp::createlog(const char* logfile)
 {
 #ifdef SONDER_LOG_DEFAULT_MAX_NUM
         if ( _id2LogInfo.size() >= SONDER_LOG_DEFAULT_MAX_NUM )
-            return -1;
+            return 0;
 #endif
     LogFileIdMap::iterator iteFileId = _logFile2Id.find(logfile);
     if (iteFileId == _logFile2Id.end())
     {
-        unsigned nId = static_cast<unsigned>(_id2LogInfo.size());
-        _logFile2Id.insert(std::pair<std::string, unsigned>(logfile, nId));
         SLogInfo* info = new SLogInfo();
         _id2LogInfo.push_back(info);
         info->setLogFileName(logfile);
         info->setDefault();
+        unsigned nId = static_cast<unsigned>(_id2LogInfo.size());
+        _logFile2Id.insert(std::pair<std::string, unsigned>(logfile, nId));
 		return nId;
     }
-    return -1;
+    return 0;
+}
+unsigned SCLogDataImp::createlog(std::string &logfile)
+{
+#ifdef SONDER_LOG_DEFAULT_MAX_NUM
+        if ( _id2LogInfo.size() >= SONDER_LOG_DEFAULT_MAX_NUM )
+            return 0;
+#endif
+    LogFileIdMap::iterator iteFileId = _logFile2Id.find(logfile);
+    if (iteFileId == _logFile2Id.end())
+    {
+        SLogInfo* info = new SLogInfo();
+        _id2LogInfo.push_back(info);
+        info->setLogFileName(logfile);
+        info->setDefault();
+        unsigned nId = static_cast<unsigned>(_id2LogInfo.size());
+        _logFile2Id.insert(std::pair<std::string, unsigned>(logfile, nId));
+        return nId;
+    }
+    return 0;
 }
 void SCLogDataImp::message(const unsigned& logid, const unsigned& loglevel, const char* content)
 {
@@ -486,11 +512,18 @@ SCLogManager* SCLogManager::Instance()
         _pSCLogMgrInstance = new SCLogManager();
     return _pSCLogMgrInstance;
 }
-int SCLogManager::createlog(std::string &logFile)
+unsigned SCLogManager::createlog( std::string &logFile )
 {
 	SCAutoLock autoLock(_ImpLock);
     if ( _pImp )
       return _pImp->createlog(logFile);
+    return 0;
+}
+unsigned SCLogManager::createlog(const char *logfile)
+{
+    SCAutoLock autoLock(_ImpLock);
+    if ( _pImp )
+      return _pImp->createlog( logfile );
     return 0;
 }
 void SCLogManager::message(const unsigned& logid, const unsigned& loglevel, const char* content)

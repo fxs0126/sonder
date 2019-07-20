@@ -8,7 +8,7 @@ QT -= core gui
 
 SOURCES += sc_log.cpp
 DESTDIR = ../../../lib
-
+DEFINES += UNICODE
 MOC_DIR = ../../../obj/common/sc_log/.moc 
 UI_DIR	= ../../../obj/common/sc_log/.ui 
 QMAKE_RPATHDIR = ../../../lib

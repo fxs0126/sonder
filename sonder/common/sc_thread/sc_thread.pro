@@ -10,7 +10,7 @@ CONFIG += debug static
 
 HEADERS += ../include/sc_thread.h
 SOURCES += sc_thread.cpp
-
+DEFINES += UNICODE
 MOC_DIR += ../../../obj/common/sc_thread/.moc 
 UI_DIR += ../../../obj/common/sc_thread/.ui
 RCC_DIR += ../../../obj/common/sc_thread/.rcc 

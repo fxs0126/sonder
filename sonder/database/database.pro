@@ -1,4 +1,4 @@
 
 TEMPLATE = subdirs
-
+DEFINES += UNICODE
 SUBDIRS += mysql

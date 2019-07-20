@@ -3,7 +3,7 @@
 TEMPLATE = lib
 TARGET = sc_time
 QT -= core gui
-
+DEFINES += UNICODE
 CONFIG += debug static
 DESTDIR = ../../../lib
 HEADERS += ../include/sc_time.h

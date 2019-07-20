@@ -8,7 +8,7 @@ DESTDIR = ../../../bin
 QT -= core gui
 CONFIG += console
 CONFIG += release shared
-
+DEFINES += UNICODE
 INCLUDEPATH += ../include
 SOURCES += sc_test.cpp
 LIBS += -L../../../lib -lsc_log \

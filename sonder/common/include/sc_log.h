@@ -106,7 +106,8 @@ public:
 	~SCLogManager();
     static SCLogManager* Instance();
     // input log file name, output log id
-    int createlog(std::string& logFile);
+    unsigned createlog(std::string& logFile);
+    unsigned createlog(const char* logfile);
 	void message(const unsigned& logid,const unsigned& loglevel,const char* content);
     void setConsoleShow(const unsigned& logid, bool bShow = false);
     void setFileLogShow(const unsigned& logid, bool bShow = false);

@@ -6,7 +6,7 @@ TEMPLATE = lib
 TARGET = sc_console
 DESTDIR = ../../../lib
 QT -= core gui
-
+DEFINES += UNICODE
 CONFIG += release shared
 INCLUDEPATH += ../include
 HEADERS += ../include/sc_console.h

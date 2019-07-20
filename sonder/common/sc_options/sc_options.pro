@@ -8,7 +8,7 @@ DESTDIR = ../../../lib
 QT -= core gui
 
 CONFIG += release shared
-
+DEFINES += UNICODE
 INCLUDEPATH += ../include
 HEADERS += ../include/sc_options.h
 SOURCES += sc_options.cpp

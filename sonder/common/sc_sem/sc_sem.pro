@@ -7,7 +7,7 @@ TARGET = sc_sem
 DESTDIR = ../../../lib
 QT -= core gui
 CONFIG += release shared
-
+DEFINES += UNICODE
 INCLUDEPATH += ../include
 HEADERS += ../include/sc_sem.h
 SOURCES += sc_sem.cpp

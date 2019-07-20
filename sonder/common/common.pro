@@ -1,6 +1,6 @@
 
 TEMPLATE = subdirs
-
+DEFINES += UNICODE
 SUBDIRS +=  sc_file \
     sc_time \
     sc_sem \
